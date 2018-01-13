@@ -1,0 +1,11 @@
+{
+  "name": "bleach",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.6.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

@@ -1,0 +1,19 @@
+<h1>登录页</h1>
+
+<form *ngIf="!(isLoggedIn | async)" (submit)="login()">
+  <label>
+    用户名
+    <input type="text" [(ngModel)]="username" name="username"/>
+  </label>
+  <label>
+    密码
+    <input type="password" [(ngModel)]="password" name="password"/>
+  </label>
+
+  <button type="submit">登录</button>
+</form>
+
+<div *ngIf="isLoggedIn | async">
+  <div>Welcome {{username}}</div>
+  <button (click)="logout()">登出</button>
+</div>

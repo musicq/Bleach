@@ -1,0 +1,10 @@
+<h1>App Shell</h1>
+
+<p>{{title}}</p>
+
+<a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>
+<a routerLink="/user-guide" routerLinkActive="active">User Guide</a>
+<a routerLink="/404" routerLinkActive="active">404</a>
+<a routerLink="/login" routerLinkActive="active">登录</a>
+
+<router-outlet></router-outlet>
