@@ -8,11 +8,6 @@ import { IS_LOGGED_IN } from '../login-status.provider';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
-interface ILogin {
-  username: string;
-  password: string;
-}
-
 @Injectable()
 export class AuthService {
   /**
@@ -61,13 +56,13 @@ export class AuthService {
 
   /**
    * login
-   * @param {ILogin} body
+   * @param {{username: string, password: string}} body
    * @returns {Observable<boolean>}
    */
   login(body: { username: string, password: string }): Observable<boolean> {
     return this.http.post<boolean>('/login', body)
       .responseStatus()
-      .switchMap((data: any) => {
+      .switchMap(() => {
         this.isLoggedIn.next(true);
         this.router.navigate([this.redirectUrl]);
         return Observable.of(true);

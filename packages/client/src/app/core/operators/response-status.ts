@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer'
 
 
 export interface HttpResponseModel {
@@ -12,7 +13,7 @@ export interface HttpResponseModel {
  * @returns {any}
  */
 export function responseStatus() {
-  return Observable.create(subscriber => {
+  return Observable.create((subscriber: Observer<any>) => {
 
     return this.subscribe(
       (value: HttpResponseModel) => {
@@ -28,11 +29,9 @@ export function responseStatus() {
           subscriber.error(value.msg);
         }
       },
-      err => subscriber.error(err),
+      (err: any) => subscriber.error(err),
       () => subscriber.complete()
     );
 
   });
 }
-
-

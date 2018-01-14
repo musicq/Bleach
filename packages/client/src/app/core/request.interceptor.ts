@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -27,7 +27,6 @@ export class RequestInterceptor implements HttpInterceptor {
   };
 
   constructor(
-    private injector: Injector,
     private router: Router,
     @Inject(IS_LOGGED_IN) private isLoggedIn: BehaviorSubject<boolean>
   ) {
@@ -65,4 +64,3 @@ export class RequestInterceptor implements HttpInterceptor {
     return _throw(errMsg);
   }
 }
-

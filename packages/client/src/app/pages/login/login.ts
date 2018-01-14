@@ -23,10 +23,10 @@ export class LoginPage implements OnInit {
     this.authService.loginStatus.subscribe(x => console.log(x));
   }
 
-  login() {
+  login(): void {
     if (!this.username || !this.password) {
       alert(`username: musicq\npassword: 111111`);
-      return false;
+      return;
     }
 
     const body = {

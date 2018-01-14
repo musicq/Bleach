@@ -1,27 +1,3 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "pretty": true,
-    "target": "es5",
-    "sourceMap": true,
-    "declaration": false,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2015",
-      "es2016"
-    ]
-  },
-  "exclude": [
-    "node_modules",
-    "release"
-  ]
+  "extends": "../../tsconfig.json"
 }

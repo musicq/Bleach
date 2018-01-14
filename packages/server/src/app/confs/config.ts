@@ -7,10 +7,10 @@ const CONFIG = {
     port: 3000
   },
   db: {
-    uri: `mongodb://127.0.0.1:27017/las-noches`,
+    uri: `mongodb://127.0.0.1:27017/bleach`,
     host: '127.0.0.1',
     port: 27017,
-    name: 'las-noches'
+    name: 'bleach'
   },
   routes: {
     prefix: '/api',

@@ -15,8 +15,12 @@ Besides necessary dependencies, you also need to install [MongoDB](https://www.m
 ## Run
 
 ```shell
+# run
+yarn start
+
+# or you can run each manually
 # run server
-cd packages/server && yarn dev
+yarn run dev:client
 # run client
-cd packages/client && yarn start
+yarn run dev:server
 ```

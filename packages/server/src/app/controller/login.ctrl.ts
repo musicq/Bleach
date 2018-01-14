@@ -1,6 +1,5 @@
 import { createHmac } from 'crypto';
 import * as debug from 'debug';
-import * as Router from 'koa-router';
 import { IRouterContext } from 'koa-router';
 import { isEmpty } from 'ramda';
 import CONFIG from '../confs/config';
@@ -16,7 +15,7 @@ const print = debug('LAS:LoginCtrl');
 
 /**
  * login
- * @param {Router.IRouterContext} ctx
+ * @param {IRouterContext} ctx
  * @returns {Promise<IResponse>}
  */
 export async function login(ctx: IRouterContext) {
@@ -61,7 +60,7 @@ export async function login(ctx: IRouterContext) {
 
 /**
  * check is logged in
- * @param {Router.IRouterContext} ctx
+ * @param {IRouterContext} ctx
  * @returns {Promise<void>}
  */
 export async function loginStatus(ctx: IRouterContext) {
@@ -73,7 +72,7 @@ export async function loginStatus(ctx: IRouterContext) {
 
 /**
  * logout
- * @param {Router.IRouterContext} ctx
+ * @param {IRouterContext} ctx
  * @returns {IResponse}
  */
 export function logout(ctx: IRouterContext) {
@@ -88,7 +87,7 @@ export function logout(ctx: IRouterContext) {
 
 /**
  * register
- * @param {Router.IRouterContext} ctx
+ * @param {IRouterContext} ctx
  * @returns {Promise<IResponse>}
  */
 export async function userRegister(ctx: IRouterContext) {
