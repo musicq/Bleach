@@ -1,4 +1,3 @@
-import { createHmac } from 'crypto';
 import * as debug from 'debug';
 import { IRouterContext } from 'koa-router';
 import { isEmpty } from 'ramda';
@@ -8,6 +7,7 @@ import { MESSAGES } from '../confs/success-messages';
 import { IUser, UserModel } from '../models/user';
 import { TokenGenerator } from '../utils/jwt-generator';
 import { sendres } from '../utils/response';
+import { encryptPwd } from '../utils/utils';
 
 
 const print = debug('LAS:LoginCtrl');
@@ -24,7 +24,7 @@ export async function login(ctx: IRouterContext) {
 
   const query = {
     username,
-    password: _encryptPwd(password)
+    password: encryptPwd(password)
   };
 
   let user: IUser;
@@ -96,7 +96,7 @@ export async function userRegister(ctx: IRouterContext) {
 
   const user = new UserModel({
     username,
-    password: _encryptPwd(password)
+    password: encryptPwd(password)
   });
 
   try {
@@ -108,16 +108,3 @@ export async function userRegister(ctx: IRouterContext) {
 
   return ctx.body = sendres(MESSAGES.save_user_success);
 }
-
-
-/**
- * encrypt password
- * @param {string} pwd
- * @returns {string}
- * @private
- */
-function _encryptPwd(pwd: string) {
-  return createHmac('sha256', CONFIG.secrets.password).update(pwd).digest('hex');
-}
-
-

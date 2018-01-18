@@ -2,6 +2,7 @@ import * as Router from 'koa-router';
 import CONFIG from './confs/config';
 import { login, loginStatus, logout, userRegister } from './controller/login.ctrl';
 import { ParamsTypeEnum, paramsValid } from './utils/validation';
+import { graphQL } from './controller/graphql.ctrl';
 
 
 const router = new Router({ prefix: CONFIG.routes.prefix });
@@ -44,5 +45,6 @@ router.get('/login', loginStatus);
  */
 router.get('/logout', logout);
 
+router.post('/graphql', graphQL);
 
 export default router;

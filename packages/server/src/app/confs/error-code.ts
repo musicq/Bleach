@@ -10,6 +10,7 @@ export const ECODE = {
   /** System Level */
   db_connect_err: { code: -100000, msg: 'Database query error.' },
   jwt_valid_failed: { code: -100001, msg: 'Token validated failed.' },
+  query_failed: { code: -100002, msg: 'Query failed.' },
 
   /** Business Level */
   request_body_empty: {code: -110000, msg: 'Request body cannot be empty.'},

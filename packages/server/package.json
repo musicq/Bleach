@@ -13,6 +13,7 @@
   "author": "musicq",
   "dependencies": {
     "debug": "^3.1.0",
+    "graphql": "^0.12.3",
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
+    "@types/graphql": "^0.11.8",
     "@types/jsonwebtoken": "^7.2.3",
     "@types/koa": "^2.0.40",
     "@types/koa-bodyparser": "^3.0.26",
