@@ -2,7 +2,6 @@ import * as debug from 'debug';
 import * as mongoose from 'mongoose';
 import CONFIG from '../../confs/config';
 
-
 const print = debug('LAS:database');
 
 /**

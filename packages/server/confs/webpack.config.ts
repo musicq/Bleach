@@ -2,7 +2,6 @@ import { CheckerPlugin } from 'awesome-typescript-loader';
 import * as nodeExternals from 'webpack-node-externals';
 import Helpers from './helpers';
 
-
 module.exports = {
   target: 'node',
 
@@ -18,10 +17,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
 
-    modules: [
-      'node_modules',
-      Helpers.rootForSrc()
-    ]
+    modules: ['node_modules', Helpers.rootForSrc()]
   },
 
   module: {
@@ -33,9 +29,7 @@ module.exports = {
     ]
   },
 
-  plugins: [
-    new CheckerPlugin()
-  ],
+  plugins: [new CheckerPlugin()],
 
   /**
    * The externals configuration option provides a way of excluding dependencies from the output bundles

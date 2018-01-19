@@ -7,7 +7,6 @@ import { TokenModel } from '../models/token';
 import { Cache } from './cache';
 import ms = require('ms');
 
-
 const _verify = promisify(verify);
 
 export class TokenGenerator {
@@ -55,11 +54,14 @@ export class TokenGenerator {
         exp: decoded && decoded.exp
       });
 
-      tokenModel.save().then(() => {
-        console.log(`token ${token} saved`);
-      }).catch(e => {
-        console.log(`save token ${token} failed`, e);
-      });
+      tokenModel
+        .save()
+        .then(() => {
+          console.log(`token ${token} saved`);
+        })
+        .catch(e => {
+          console.log(`save token ${token} failed`, e);
+        });
 
       // add token to cache at the same time.
       this.blacklist = this.blacklist || Cache.get('blacklist');
@@ -89,5 +91,4 @@ export class TokenGenerator {
     payload.iat = Date.now();
     return sign(payload, this.secret, opt);
   }
-
 }

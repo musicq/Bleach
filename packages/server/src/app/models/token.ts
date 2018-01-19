@@ -1,6 +1,5 @@
 import { Document, model, Schema } from 'mongoose';
 
-
 export interface IToken extends Document {
   token: string;
   exp: Date;

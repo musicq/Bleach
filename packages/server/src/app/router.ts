@@ -1,9 +1,8 @@
 import * as Router from 'koa-router';
 import CONFIG from './confs/config';
+import { graphQL } from './controller/graphql.ctrl';
 import { login, loginStatus, logout, userRegister } from './controller/login.ctrl';
 import { ParamsTypeEnum, paramsValid } from './utils/validation';
-import { graphQL } from './controller/graphql.ctrl';
-
 
 const router = new Router({ prefix: CONFIG.routes.prefix });
 
@@ -13,10 +12,7 @@ const router = new Router({ prefix: CONFIG.routes.prefix });
  */
 router.post(
   '/register',
-  paramsValid([
-    { name: 'username', type: ParamsTypeEnum.STRING },
-    { name: 'password', type: ParamsTypeEnum.STRING }
-  ]),
+  paramsValid([{ name: 'username', type: ParamsTypeEnum.STRING }, { name: 'password', type: ParamsTypeEnum.STRING }]),
   userRegister
 );
 
@@ -26,10 +22,7 @@ router.post(
  */
 router.post(
   '/login',
-  paramsValid([
-    { name: 'username', type: ParamsTypeEnum.STRING },
-    { name: 'password', type: ParamsTypeEnum.STRING }
-  ]),
+  paramsValid([{ name: 'username', type: ParamsTypeEnum.STRING }, { name: 'password', type: ParamsTypeEnum.STRING }]),
   login
 );
 

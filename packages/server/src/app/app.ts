@@ -2,7 +2,6 @@ import * as debug from 'debug';
 import * as Application from 'koa';
 import CONFIG from './confs/config';
 
-
 const print = debug('LAS:app');
 
 /**
@@ -15,8 +14,7 @@ export default class App {
   // pre tasks, when all pre tasks finish, server will serve.
   private static _preTasks: Array<any> = [];
 
-  private constructor() {
-  }
+  private constructor() {}
 
   /**
    * register pre tasks to app, app will run this tasks before server serving
@@ -52,9 +50,8 @@ export default class App {
     const allPreparedTasks = Promise.all(this._preTasks);
 
     // wait all pre tasks get ready
-    allPreparedTasks.then(() => next())
-      .catch((e) => {
-        throw new Error(e);
-      });
+    allPreparedTasks.then(() => next()).catch(e => {
+      throw new Error(e);
+    });
   }
 }

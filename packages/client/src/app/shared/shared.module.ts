@@ -1,20 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BusinessModule } from '../components';
-import { CommonModule } from '@angular/common';
 
-
-const COMMON_MODULES = [
-  BusinessModule
-];
+const COMMON_MODULES = [BusinessModule];
 
 @NgModule({
-  imports: [
-    ...COMMON_MODULES
-  ],
-  exports: [
-    CommonModule,
-    ...COMMON_MODULES
-  ]
+  imports: [...COMMON_MODULES],
+  exports: [CommonModule, ...COMMON_MODULES]
 })
-export class SharedModule {
-}
+export class SharedModule {}

@@ -1,13 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginModule } from './pages/login/login.module';
-import { AppRoutingModule } from './app-routing.module';
+import { BusinessModule } from './components';
 import { CoreModule } from './core/core.module';
-import { BusinessModule } from './components/index';
-import { HttpClientModule } from '@angular/common/http';
-
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
   imports: [
@@ -23,13 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 
     LoginModule
   ],
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   providers: [],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

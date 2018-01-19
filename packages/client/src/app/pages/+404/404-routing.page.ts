@@ -1,6 +1,6 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFundPage } from './404.page';
-import { NgModule } from '@angular/core';
 
 const NotFundRoutes: Routes = [
   {
@@ -10,8 +10,6 @@ const NotFundRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(NotFundRoutes)
-  ]
+  imports: [RouterModule.forChild(NotFundRoutes)]
 })
 export class NotFundRoutingModule {}

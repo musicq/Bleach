@@ -8,7 +8,6 @@ import { sendres } from '../utils/response';
 import debug = require('debug');
 import ms = require('ms');
 
-
 const print = debug('LAS:jwt');
 const _verify = promisify(verify);
 
@@ -33,7 +32,7 @@ export default function jwt() {
     // cookie is expired, log out
     if (!token) {
       ctx.status = 401;
-      return ctx.body = sendres(ECODE.jwt_valid_failed);
+      return (ctx.body = sendres(ECODE.jwt_valid_failed));
     }
 
     const decoded: any = await _verify(token, CONFIG.secrets.jwt).catch(e => console.log(e));
@@ -41,7 +40,7 @@ export default function jwt() {
     // if no content or is blacked, return
     if (!decoded || TokenGenerator.isBlacked(token)) {
       ctx.status = 401;
-      return ctx.body = sendres(ECODE.jwt_valid_failed);
+      return (ctx.body = sendres(ECODE.jwt_valid_failed));
     }
 
     print('current token payload is :', decoded);

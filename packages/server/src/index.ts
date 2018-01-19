@@ -5,7 +5,6 @@ import { connectDB, restoreTokenBlacklist } from './app/hooks';
 import jwt from './app/middlewares/jwt';
 import router from './app/router';
 
-
 const print = debug('LAS:index');
 
 // register pre tasks

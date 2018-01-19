@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer'
-
+import { Observer } from 'rxjs/Observer';
 
 export interface HttpResponseModel {
   status: number;
@@ -14,7 +13,6 @@ export interface HttpResponseModel {
  */
 export function responseStatus() {
   return Observable.create((subscriber: Observer<any>) => {
-
     return this.subscribe(
       (value: HttpResponseModel) => {
         if (value.status === 0) {
@@ -32,6 +30,5 @@ export function responseStatus() {
       (err: any) => subscriber.error(err),
       () => subscriber.complete()
     );
-
   });
 }

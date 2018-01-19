@@ -1,5 +1,5 @@
-import CONFIG from '../confs/config';
 import { createHmac } from 'crypto';
+import CONFIG from '../confs/config';
 
 /**
  * encrypt password
@@ -8,7 +8,7 @@ import { createHmac } from 'crypto';
  * @private
  */
 export function encryptPwd(pwd: string) {
-  return createHmac('sha256', CONFIG.secrets.password).update(pwd).digest('hex');
+  return createHmac('sha256', CONFIG.secrets.password)
+    .update(pwd)
+    .digest('hex');
 }
-
-

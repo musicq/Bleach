@@ -1,9 +1,8 @@
 import { IMiddleware, IRouterContext } from 'koa-router';
+import { isEmpty } from 'ramda';
 import { isNullOrUndefined } from 'util';
 import { ECODE, IECODE } from '../confs/error-code';
 import { sendres } from './response';
-import { isEmpty } from 'ramda';
-
 
 export const enum ParamsTypeEnum {
   NUMBER,
@@ -29,14 +28,14 @@ export function paramsValid(params: Array<IParams>): IMiddleware {
 
     // request body is empty
     if (isEmpty(body)) {
-      return ctx.body = sendres(ECODE.request_body_empty);
+      return (ctx.body = sendres(ECODE.request_body_empty));
     }
 
     const emptyParams = checkParamsValid(params, body);
     const errMsg = composeErrorMsg(emptyParams);
 
     if (errMsg) {
-      return ctx.body = sendres(<IECODE>errMsg);
+      return (ctx.body = sendres(<IECODE>errMsg));
     }
 
     return next();

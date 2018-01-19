@@ -1,12 +1,11 @@
-import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
-import { IS_LOGGED_IN } from '../login-status.provider';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { Observable } from 'rxjs/Observable';
+import { IS_LOGGED_IN } from '../login-status.provider';
 
 @Injectable()
 export class AuthService {
@@ -21,12 +20,7 @@ export class AuthService {
    */
   private isDone: boolean = false;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    @Inject(IS_LOGGED_IN) private isLoggedIn: BehaviorSubject<boolean>
-  ) {
-  }
+  constructor(private http: HttpClient, private router: Router, @Inject(IS_LOGGED_IN) private isLoggedIn: BehaviorSubject<boolean>) {}
 
   /**
    * get login status
@@ -41,17 +35,20 @@ export class AuthService {
    * ```
    */
   get loginStatus(): Observable<boolean> {
-    return this.isDone ? this.isLoggedIn : this.http.get('/login', { responseType: 'text' })
-      .switchMap(() => {
-        this.isLoggedIn.next(true);
-        return Observable.of(true);
-      })
-      .catch((err: string) => {
-        console.error(err);
-        this.isLoggedIn.next(false);
-        return Observable.of(false);
-      })
-      .do(() => this.isDone = true);
+    return this.isDone
+      ? this.isLoggedIn
+      : this.http
+          .get('/login', { responseType: 'text' })
+          .switchMap(() => {
+            this.isLoggedIn.next(true);
+            return Observable.of(true);
+          })
+          .catch((err: string) => {
+            console.error(err);
+            this.isLoggedIn.next(false);
+            return Observable.of(false);
+          })
+          .do(() => (this.isDone = true));
   }
 
   /**
@@ -59,8 +56,9 @@ export class AuthService {
    * @param {{username: string, password: string}} body
    * @returns {Observable<boolean>}
    */
-  login(body: { username: string, password: string }): Observable<boolean> {
-    return this.http.post<boolean>('/login', body)
+  login(body: { username: string; password: string }): Observable<boolean> {
+    return this.http
+      .post<boolean>('/login', body)
       .responseStatus()
       .switchMap(() => {
         this.isLoggedIn.next(true);
@@ -74,7 +72,8 @@ export class AuthService {
    * @returns {Observable<boolean>}
    */
   logout(): Observable<boolean> {
-    return this.http.get<Observable<boolean>>('/logout')
+    return this.http
+      .get<Observable<boolean>>('/logout')
       .responseStatus()
       .switchMap(() => {
         this.isLoggedIn.next(false);

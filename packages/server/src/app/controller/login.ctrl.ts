@@ -9,9 +9,7 @@ import { TokenGenerator } from '../utils/jwt-generator';
 import { sendres } from '../utils/response';
 import { encryptPwd } from '../utils/utils';
 
-
 const print = debug('LAS:LoginCtrl');
-
 
 /**
  * login
@@ -32,11 +30,11 @@ export async function login(ctx: IRouterContext) {
     user = <IUser>await UserModel.findOne(query).exec();
   } catch (e) {
     print(e);
-    return ctx.body = sendres(ECODE.db_connect_err);
+    return (ctx.body = sendres(ECODE.db_connect_err));
   }
 
   if (isEmpty(user)) {
-    return ctx.body = sendres(ECODE.username_pwd_err);
+    return (ctx.body = sendres(ECODE.username_pwd_err));
   }
 
   const tokenGenerator: TokenGenerator = new TokenGenerator(CONFIG.secrets.jwt, {
@@ -52,10 +50,10 @@ export async function login(ctx: IRouterContext) {
 
   // set jwt in cookie and HttpOnly to prevent js read it
   ctx.cookies.set('token', token, { maxAge: CONFIG.cookieMaxAge });
-  return ctx.body = sendres(0, {
+  return (ctx.body = sendres(0, {
     username: user.username,
     token: token
-  });
+  }));
 }
 
 /**
@@ -67,7 +65,7 @@ export async function loginStatus(ctx: IRouterContext) {
   // it doesn't ship any information (for now),
   // just let client now that the user has been logged in.
   ctx.status = 204;
-  return ctx.body = '';
+  return (ctx.body = '');
 }
 
 /**
@@ -82,7 +80,7 @@ export function logout(ctx: IRouterContext) {
   }
   // clear user's cookie
   ctx.cookies.set('token');
-  return ctx.body = sendres(MESSAGES.logout_success);
+  return (ctx.body = sendres(MESSAGES.logout_success));
 }
 
 /**
@@ -103,8 +101,8 @@ export async function userRegister(ctx: IRouterContext) {
     await user.save();
   } catch (e) {
     print(e);
-    return ctx.body = sendres(ECODE.save_user_failed);
+    return (ctx.body = sendres(ECODE.save_user_failed));
   }
 
-  return ctx.body = sendres(MESSAGES.save_user_success);
+  return (ctx.body = sendres(MESSAGES.save_user_success));
 }

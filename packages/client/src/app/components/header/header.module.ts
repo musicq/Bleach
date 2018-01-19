@@ -1,20 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HeaderComponent, MainHeaderDirective, SubHeaderDirective } from './header.component';
 
-
-const COMPONENTS = [
-  HeaderComponent,
-  SubHeaderDirective,
-  MainHeaderDirective
-];
+const COMPONENTS = [HeaderComponent, SubHeaderDirective, MainHeaderDirective];
 
 @NgModule({
-  declarations: [
-    ...COMPONENTS
-  ],
-  exports: [
-    ...COMPONENTS
-  ],
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS]
 })
-export class HeaderModule {
-}
+export class HeaderModule {}

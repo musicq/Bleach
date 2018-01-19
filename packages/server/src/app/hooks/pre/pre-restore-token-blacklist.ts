@@ -9,7 +9,6 @@ import CONFIG from '../../confs/config';
 import { IToken, TokenModel } from '../../models/token';
 import { Cache } from '../../utils/cache';
 
-
 const print = debug('LAS:restore-token-blacklist');
 
 const blacklist: LRU.Cache<string, any> = LRU({

@@ -1,6 +1,5 @@
 import { IECODE } from '../confs/error-code';
 
-
 /**
  * response data structure
  */
@@ -9,7 +8,6 @@ export interface IResponse {
   data?: any;
   msg?: string;
 }
-
 
 /**
  * format response data

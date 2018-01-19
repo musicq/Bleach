@@ -1,6 +1,5 @@
 import * as Koa from 'koa';
 
-
 /**
  * Custom property on Context
  */

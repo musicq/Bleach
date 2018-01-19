@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPage } from './pages/login/login';
 import { AuthGuard } from './core/services/auth.guard';
-
+import { LoginPage } from './pages/login/login';
 
 const appRoutes: Routes = [
   {
@@ -32,16 +31,10 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      {
-        // enableTracing: true
-      }
-    )
+    RouterModule.forRoot(appRoutes, {
+      // enableTracing: true
+    })
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

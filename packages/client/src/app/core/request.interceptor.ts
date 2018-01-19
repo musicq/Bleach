@@ -1,13 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import { _throw } from 'rxjs/observable/throw';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IS_LOGGED_IN } from './login-status.provider';
+import 'rxjs/add/operator/catch';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { _throw } from 'rxjs/observable/throw';
+import { IS_LOGGED_IN } from './login-status.provider';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -26,11 +25,7 @@ export class RequestInterceptor implements HttpInterceptor {
     }
   };
 
-  constructor(
-    private router: Router,
-    @Inject(IS_LOGGED_IN) private isLoggedIn: BehaviorSubject<boolean>
-  ) {
-  }
+  constructor(private router: Router, @Inject(IS_LOGGED_IN) private isLoggedIn: BehaviorSubject<boolean>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let url = req.url.startsWith('/') ? req.url : '/' + req.url;
@@ -39,8 +34,7 @@ export class RequestInterceptor implements HttpInterceptor {
     const options: any = { url: url };
     const newReq = req.clone(options);
 
-    return next.handle(newReq)
-      .catch(error => this.errorHandler(error));
+    return next.handle(newReq).catch(error => this.errorHandler(error));
   }
 
   /**

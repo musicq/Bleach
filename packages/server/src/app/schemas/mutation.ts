@@ -1,8 +1,7 @@
 import { GraphQLObjectType } from 'graphql';
-import { User, UserInput } from './user.schema';
 import { UserModel } from '../models/user';
 import { encryptPwd } from '../utils/utils';
-
+import { User, UserInput } from './user.schema';
 
 export const GraphMutation = new GraphQLObjectType({
   name: 'Mutation',

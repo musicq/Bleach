@@ -1,15 +1,14 @@
 import { Component, Directive, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 
-
 @Directive({
-  selector: 'app-sub-header',
+  selector: 'app-sub-header'
 })
 export class SubHeaderDirective {
   @HostBinding() class: string = 'app-sub-header';
 }
 
 @Directive({
-  selector: 'app-main-header',
+  selector: 'app-main-header'
 })
 export class MainHeaderDirective {
   @HostBinding() class: string = 'app-main-header';
@@ -19,12 +18,10 @@ export class MainHeaderDirective {
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() { }
-
+  ngOnInit() {}
 }
