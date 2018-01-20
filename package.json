@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "lerna exec yarn start",
+    "compile": "concurrently \"yarn run dev:client\" \"yarn run compile:server\"",
     "dev:client": "lerna exec --scope=client -- yarn start",
     "dev:server": "lerna exec --scope=server -- yarn start",
+    "compile:server": "lerna exec --scope=server -- yarn run server:watch",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged && yarn run lint",
     "lint": "tslint \"packages/**/*.ts\" --exclude \"packages/**/node_modules/**\""
@@ -14,6 +16,7 @@
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",
     "@types/node": "^9.3.0",
+    "concurrently": "^3.5.1",
     "husky": "^0.14.3",
     "lerna": "^2.6.0",
     "lint-staged": "^6.0.1",

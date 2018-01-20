@@ -10,7 +10,7 @@ In fact, Bleach is a project that we just want to test new technology we have le
 yarn install
 ```
 
-Besides necessary dependencies, you also need to install [MongoDB](https://www.mongodb.com/), Beacuse server needs a database to store data.
+Besides necessary dependencies, you also need to install [MongoDB](https://www.mongodb.com/) and start it, Because server needs a database to store data.
 
 ## Run
 
@@ -24,3 +24,12 @@ yarn run dev:client
 # run client
 yarn run dev:server
 ```
+
+## Development
+
+```shell
+# compile code
+yarn run compile
+```
+
+This will compile both server and client code. Then, you need to start server to develop. You can use `nodemon` or `node-dev` or whatever you like to start server from `packages/server/release/index.js`.
