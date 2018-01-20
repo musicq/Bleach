@@ -82,4 +82,11 @@ export class AuthService {
         return Observable.of(true);
       });
   }
+
+  register(body: { username: string; password: string }): Observable<any> {
+    return this.http
+      .post<any>('/register', body)
+      .responseStatus()
+      .switchMap((data: any) => Observable.of(data));
+  }
 }

@@ -1,10 +1,17 @@
-<h1>App Shell</h1>
+<!--<a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>-->
+<!--<a routerLink="/user-guide" routerLinkActive="active">User Guide</a>-->
+<!--<a routerLink="/404" routerLinkActive="active">404</a>-->
+<!--<a routerLink="/login" routerLinkActive="active">登录</a>-->
 
-<p>{{title}}</p>
+<div *ngIf="winState === 'global'">
+  <router-outlet></router-outlet>
+</div>
 
-<a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>
-<a routerLink="/user-guide" routerLinkActive="active">User Guide</a>
-<a routerLink="/404" routerLinkActive="active">404</a>
-<a routerLink="/login" routerLinkActive="active">登录</a>
+<div *ngIf="winState === 'single'" class="single">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+<div *ngIf="winState === 'popup'">
+  <router-outlet></router-outlet>
+</div>
+

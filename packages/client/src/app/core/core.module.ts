@@ -2,10 +2,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { LoggerInterceptor } from './logger.interceptor';
 import { IS_LOGGED_IN, isLoggedIn } from './login-status.provider';
-import { patchOperators } from './operators/index';
+import { patchOperators } from './operators';
 import { RequestInterceptor } from './request.interceptor';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
+import { GraphQLService } from './services/graphql.service';
 
 @NgModule({})
 export class CoreModule {
@@ -28,6 +29,7 @@ export class CoreModule {
       providers: [
         AuthGuard,
         AuthService,
+        GraphQLService,
         {
           provide: IS_LOGGED_IN,
           useValue: isLoggedIn

@@ -1,3 +1,113 @@
-pre {
-  background: lightseagreen;
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../assets/images/bg.jpg') no-repeat;
+  background-size: cover;
+
+  &__card {
+    width: 45rem;
+    padding: 1.428rem 2.142rem;
+    box-shadow: 0 0 0.7rem 0 rgba(59, 131, 157, 0.7);
+    border-radius: 8px;
+    background: #ffffff;
+
+    &__header__logo {
+      font-size: 1.428rem;
+      color: #627d8a;
+    }
+
+    &__box {
+      display: flex;
+
+      &__show {
+        flex: 1.4;
+        background-image: url('../../../assets/images/login.png');
+        height: 20rem;
+        width: 20rem;
+        background-size: 100% 100%;
+      }
+
+      &__form {
+        flex: 1;
+
+        &__title {
+          color: #85cbc6;
+          text-align: center;
+          font-size: 1.14rem;
+        }
+
+        form {
+          margin: 1.2rem;
+        }
+
+        &__control {
+          padding: 0.714rem 0.714rem 0.714rem 0;
+          border-bottom: 1px solid #c8d1d9;
+
+          .fa {
+            display: inline-block;
+            padding-right: 0.714rem;
+            color: #c8d1d9;
+          }
+
+          input {
+            width: 85%;
+            border: 0;
+            display: inline-block;
+            line-height: 1.8rem;
+            color: #69727a;
+            font-size: 1rem;
+
+            &::placeholder {
+              color: #c8d1d9;
+            }
+          }
+        }
+
+        &__button {
+          margin: 2rem auto 0 auto;
+          width: 7rem;
+          display: block;
+          line-height: 2rem;
+          background: #83cbc4;
+          border: 0;
+          border-radius: 1rem;
+          color: #fff;
+          cursor: pointer;
+          font-size: 1rem;
+
+          &:hover {
+            background: #74bab3;
+          }
+
+          &:active {
+            background: #66aca5;
+          }
+        }
+
+        &__footer {
+          text-align: center;
+
+          a {
+            display: inline-block;
+            color: #c8d1d9;
+            text-decoration: none;
+            margin-top: .7rem;
+            font-size: 0.857rem;
+
+            &:hover {
+              text-decoration: underline;
+              color: #b7c0c8;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -21,16 +21,10 @@ export interface IResponse {
  *  data: {}
  * }
  *
- * 2. success:message
- * {
- *  status: 0,
- *  msg: ''
- * }
- *
- * 3. error:message
+ * 2. error:message
  * {
  *  status: -1
- *  msg: ''
+ *  error: ''
  * }
  *
  */
@@ -56,7 +50,7 @@ export function sendres(...args: any[]): any {
     const res: IResponse = {
       status: args[0]
     };
-    res[typeof args[1] === 'string' ? 'msg' : 'data'] = args[1];
+    res[typeof args[1] === 'string' ? 'error' : 'data'] = args[1];
 
     return res;
   }

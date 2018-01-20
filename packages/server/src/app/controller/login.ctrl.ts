@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 import { IRouterContext } from 'koa-router';
-import { isEmpty } from 'ramda';
+import { isEmpty, isNil } from 'ramda';
 import CONFIG from '../confs/config';
 import { ECODE } from '../confs/error-code';
 import { MESSAGES } from '../confs/success-messages';
@@ -33,7 +33,7 @@ export async function login(ctx: IRouterContext) {
     return (ctx.body = sendres(ECODE.db_connect_err));
   }
 
-  if (isEmpty(user)) {
+  if (isEmpty(user) || isNil(user)) {
     return (ctx.body = sendres(ECODE.username_pwd_err));
   }
 
@@ -51,8 +51,8 @@ export async function login(ctx: IRouterContext) {
   // set jwt in cookie and HttpOnly to prevent js read it
   ctx.cookies.set('token', token, { maxAge: CONFIG.cookieMaxAge });
   return (ctx.body = sendres(0, {
-    username: user.username,
-    token: token
+    id: user.id,
+    username: user.username
   }));
 }
 

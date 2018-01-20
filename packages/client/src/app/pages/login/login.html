@@ -1,19 +1,42 @@
-<h1>登录页</h1>
+<div class="login">
+  <div class="login__card">
+    <div class="login__card__header">
+      <div class="login__card__header__logo">BLEACH</div>
+    </div>
 
-<form *ngIf="!(isLoggedIn | async)" (submit)="login()">
-  <label>
-    用户名
-    <input type="text" [(ngModel)]="username" name="username"/>
-  </label>
-  <label>
-    密码
-    <input type="password" [(ngModel)]="password" name="password"/>
-  </label>
+    <div class="login__card__box">
+      <div class="login__card__box__show"></div>
 
-  <button type="submit">登录</button>
-</form>
+      <div class="login__card__box__form">
+        <div class="login__card__box__form__title">{{actionName}} BLEACH</div>
 
-<div *ngIf="isLoggedIn | async">
-  <div>Welcome {{username}}</div>
-  <button (click)="logout()">登出</button>
+        <form (submit)="submit()">
+          <div class="login__card__box__form__control">
+            <label>
+              <i class="fa fa-user"></i>
+              <input type="text" [(ngModel)]="form.username" name="username" placeholder="用户名"/>
+            </label>
+          </div>
+          <div class="login__card__box__form__control">
+            <label>
+              <i class="fa fa-unlock-alt"></i>
+              <input type="password" [(ngModel)]="form.password" name="password" placeholder="密码"/>
+            </label>
+          </div>
+          <div class="login__card__box__form__control" *ngIf="isRegisterPage">
+            <label>
+              <i class="fa fa-unlock-alt"></i>
+              <input type="password" [(ngModel)]="repassword" name="repassword" placeholder="确认密码"/>
+            </label>
+          </div>
+
+          <button type="submit" class="login__card__box__form__button">{{actionName}}</button>
+
+          <div class="login__card__box__form__footer">
+            <a href="/register" (click)="switchForm($event)">{{this.isRegisterPage ? '登录' : '注册' }}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
