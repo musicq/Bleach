@@ -6,8 +6,13 @@ In fact, Bleach is a project that we just want to test new technology we have le
 
 ## Install
 
+You should install [yarn](https://yarnpkg.com) or [lerna](https://lernajs.io/) in your local first.
+
 ```shell
 yarn install
+
+# or use lerna
+lerna bootstrap
 ```
 
 Besides necessary dependencies, you also need to install [MongoDB](https://www.mongodb.com/) and start it, Because server needs a database to store data.
@@ -15,7 +20,7 @@ Besides necessary dependencies, you also need to install [MongoDB](https://www.m
 ## Run
 
 ```shell
-# run
+# start quickly
 yarn start
 
 # or you can run each manually

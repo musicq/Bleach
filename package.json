@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "lerna exec yarn start",
+    "start": "concurrently \"yarn run dev:client\" \"yarn run dev:server\"",
     "compile": "concurrently \"yarn run dev:client\" \"yarn run compile:server\"",
-    "dev:client": "lerna exec --scope=client -- yarn start",
-    "dev:server": "lerna exec --scope=server -- yarn start",
-    "compile:server": "lerna exec --scope=server -- yarn run server:watch",
+    "dev:client": "lerna exec --scope=@bleach/client -- yarn start",
+    "dev:server": "lerna exec --scope=@bleach/server -- yarn start",
+    "compile:server": "lerna exec --scope=@bleach/server -- yarn run server:watch",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged && yarn run lint",
     "lint": "tslint \"packages/**/*.ts\" --exclude \"packages/**/node_modules/**\""
@@ -21,7 +21,6 @@
     "lerna": "^2.6.0",
     "lint-staged": "^6.0.1",
     "prettier": "1.10.2",
-    "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   },

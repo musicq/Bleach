@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "@bleach/client",
   "version": "0.0.0",
   "description": "client side code",
   "scripts": {
