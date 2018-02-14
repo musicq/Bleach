@@ -4,12 +4,13 @@ import App from './app/app';
 import { connectDB, restoreTokenBlacklist } from './app/hooks';
 import jwt from './app/middlewares/jwt';
 import router from './app/router';
+import form from './app/middlewares/form';
 
-const print = debug('LAS:index');
+const print = debug('BLEACH:index');
 
 // register pre tasks
 App.registerPreTasks(connectDB);
-App.registerPreTasks(restoreTokenBlacklist);
+App.registerTasks(restoreTokenBlacklist);
 
 // launch app
 const app = App.launch();
@@ -17,6 +18,7 @@ const app = App.launch();
 // middle wares
 app.use(jwt());
 app.use(bodyParser());
+app.use(form());
 
 app.use(router.routes());
 app.use(router.allowedMethods());

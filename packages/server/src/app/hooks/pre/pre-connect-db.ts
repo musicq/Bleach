@@ -1,30 +1,37 @@
+/**
+ * @fileOverview connect database
+ */
 import * as debug from 'debug';
 import * as mongoose from 'mongoose';
+import { createConnection, Connection } from 'mongoose';
 import CONFIG from '../../confs/config';
+import { DB } from '../../utils/db';
 
-const print = debug('LAS:database');
+const print = debug('BLEACH:database');
+
+// launch DBs
+DB.set('DB', createConnection(CONFIG.db.DBUri));
+DB.set('SHEETS_DB', createConnection(CONFIG.db.SHEETSDBUri));
 
 /**
  * connect to db
- * @returns {Promise<any>}
+ * @returns {Promise<void>[]}
  */
-export const connectDB = (): Promise<any> => {
+export const connectDB = (): Promise<void>[] => {
   // replace mongoose default promise method with global promise
   (<any>mongoose).Promise = global.Promise;
 
-  return new Promise((resolve, reject) => {
-    mongoose.connect(CONFIG.db.uri, { useMongoClient: true });
+  return [DB.get('DB'), DB.get('SHEETS_DB')].map(db => {
+    return new Promise((resolve, reject) => {
+      db.on('error', (e: Error) => {
+        print(`[Database Connection] an error occurs! error: ${JSON.stringify(e)}`);
+        reject(e);
+      });
 
-    const connection = mongoose.connection;
-
-    connection.on('error', (e: Error) => {
-      print(`[Database Connection] an error occurs! error: ${JSON.stringify(e)}`);
-      reject(e);
-    });
-
-    connection.once('open', () => {
-      print(`[Database Connection] db connection success!`);
-      resolve();
+      db.once('open', () => {
+        print(`[Database Connection] DB ${(db as Connection & { name: string }).name} is connected successfully!`);
+        resolve();
+      });
     });
   });
 };

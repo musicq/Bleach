@@ -1,15 +1,15 @@
 /**
- * Restore token blacklist when app is launched.
+ * @fileOverview Restore token blacklist when app is launched.
  */
 
 import * as debug from 'debug';
 import * as LRU from 'lru-cache';
-import { isEmpty } from 'ramda';
+import { isEmpty, isNil } from 'ramda';
 import CONFIG from '../../confs/config';
 import { IToken, TokenModel } from '../../models/token';
 import { Cache } from '../../utils/cache';
 
-const print = debug('LAS:restore-token-blacklist');
+const print = debug('BLEACH:restore-token-blacklist');
 
 const blacklist: LRU.Cache<string, any> = LRU({
   max: CONFIG.maxCacheStorage,
@@ -18,20 +18,20 @@ const blacklist: LRU.Cache<string, any> = LRU({
 
 /**
  * connect to db
- * @returns {Promise<any>}
+ * @returns {Promise<void>}
  */
 export const restoreTokenBlacklist = (): Promise<void> => {
   Cache.set('blacklist', blacklist);
 
   return new Promise(async (resolve, reject) => {
-    let tokenDocuments: IToken[] = [];
+    const tokenDocuments: IToken[] = <IToken[]>await TokenModel.find({ exp: { $gt: new Date() } })
+      .exec()
+      .catch(e => {
+        print(`[Restore Token Blacklist] an error occurs! error: ${JSON.stringify(e)}`);
+        reject(e);
+      });
 
-    try {
-      tokenDocuments = <IToken[]>await TokenModel.find().exec();
-    } catch (e) {
-      print(`[Restore Token Blacklist] an error occurs! error: ${JSON.stringify(e)}`);
-      reject(e);
-    }
+    if (isNil(tokenDocuments)) return;
 
     if (!isEmpty(tokenDocuments)) {
       tokenDocuments.forEach(document => blacklist.set(document.token, true));

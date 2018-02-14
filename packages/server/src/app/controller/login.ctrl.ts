@@ -9,7 +9,7 @@ import { TokenGenerator } from '../utils/jwt-generator';
 import { sendres } from '../utils/response';
 import { encryptPwd } from '../utils/utils';
 
-const print = debug('LAS:LoginCtrl');
+const print = debug('BLEACH:LoginCtrl');
 
 /**
  * login

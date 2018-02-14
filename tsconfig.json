@@ -15,16 +15,8 @@
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2015"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2015"]
   },
-  "exclude": [
-    "node_modules",
-    "release"
-  ]
+  "exclude": ["node_modules", "release"]
 }

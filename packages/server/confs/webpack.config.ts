@@ -7,11 +7,14 @@ module.exports = {
 
   devtool: 'source-map',
 
-  entry: Helpers.rootForSrc('index.ts'),
+  entry: {
+    index: Helpers.rootForSrc('index.ts'),
+    'extract-excel.worker': Helpers.rootForSrc('app/workers/extract-excel.worker.ts')
+  },
 
   output: {
     path: Helpers.rootForRelease(),
-    filename: 'index.js'
+    filename: '[name].js'
   },
 
   resolve: {

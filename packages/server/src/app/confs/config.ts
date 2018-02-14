@@ -6,10 +6,12 @@ const CONFIG = {
     port: 3000
   },
   db: {
-    uri: `mongodb://127.0.0.1:27017/bleach`,
+    DBUri: `mongodb://127.0.0.1:27017/bleach`,
+    SHEETSDBUri: `mongodb://127.0.0.1:27017/sheets`,
     host: '127.0.0.1',
     port: 27017,
-    name: 'bleach'
+    name: 'bleach',
+    sheetsDB: 'sheets'
   },
   routes: {
     prefix: '/api',
@@ -21,6 +23,10 @@ const CONFIG = {
       {
         method: 'POST',
         path: '/register'
+      },
+      {
+        method: 'POST',
+        path: '/upload'
       }
     ]
   },

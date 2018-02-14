@@ -3,6 +3,7 @@ import CONFIG from './confs/config';
 import { graphQL } from './controller/graphql.ctrl';
 import { login, loginStatus, logout, userRegister } from './controller/login.ctrl';
 import { ParamsTypeEnum, paramsValid } from './utils/validation';
+import { upload } from './controller/upload.ctrl';
 
 const router = new Router({ prefix: CONFIG.routes.prefix });
 
@@ -38,6 +39,16 @@ router.get('/login', loginStatus);
  */
 router.get('/logout', logout);
 
+/**
+ * @api graphql
+ * @method POST
+ */
 router.post('/graphql', graphQL);
+
+/**
+ * @api upload
+ * @method POST
+ */
+router.post('/upload', upload);
 
 export default router;

@@ -1,4 +1,5 @@
-import { Document, model, Schema } from 'mongoose';
+import { Document, Schema } from 'mongoose';
+import { DB } from '../utils/db';
 
 export interface IToken extends Document {
   token: string;
@@ -10,4 +11,4 @@ export const TokenSchema = new Schema({
   exp: Date
 });
 
-export const TokenModel = model('token', TokenSchema);
+export const TokenModel = DB.get('DB').model('token', TokenSchema);

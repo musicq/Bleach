@@ -51,3 +51,9 @@ typings/
 /packages/client/dist
 /packages/client/tmp
 /packages/client/out-tsc
+
+# test packages useage
+test-cases/
+
+# upload dir
+upload/

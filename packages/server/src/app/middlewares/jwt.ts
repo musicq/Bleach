@@ -8,7 +8,7 @@ import { sendres } from '../utils/response';
 import debug = require('debug');
 import ms = require('ms');
 
-const print = debug('LAS:jwt');
+const print = debug('BLEACH:jwt');
 const _verify = promisify(verify);
 
 const noNeedAuthorizationRoutes = CONFIG.routes.noAuthApi.map(route => {

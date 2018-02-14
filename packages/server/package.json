@@ -4,7 +4,9 @@
   "description": "server side code",
   "scripts": {
     "start": "yarn run dev",
-    "dev": "ts-node src/index.ts",
+    "dev": "DEBUG=* nodemon",
+    "compile": "concurrently \"yarn run dev\" \"yarn run compile:workers\"",
+    "compile:workers": "tsc src/app/workers/*.ts -w --outDir release --lib es2017",
     "server:dev": "yarn run webpack --config confs/webpack.config.ts",
     "server:watch": "yarn run server:dev -w",
     "server:build": "yarn run server:dev -p",
@@ -13,6 +15,7 @@
   "author": "musicq",
   "dependencies": {
     "debug": "^3.1.0",
+    "formidable": "^1.1.1",
     "graphql": "^0.12.3",
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.4.1",
@@ -24,10 +27,12 @@
     "napajs": "^0.2.0",
     "ramda": "^0.25.0",
     "tslib": "^1.8.1",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "xlsx": "^0.11.18"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
+    "@types/formidable": "^1.0.30",
     "@types/graphql": "^0.11.8",
     "@types/jsonwebtoken": "^7.2.3",
     "@types/koa": "^2.0.40",
@@ -36,12 +41,16 @@
     "@types/lru-cache": "^4.1.0",
     "@types/mongoose": "^4.7.27",
     "@types/ms": "^0.7.30",
+    "@types/node": "^9.4.0",
     "@types/ramda": "^0.25.6",
     "@types/uuid": "^3.4.3",
     "@types/webpack-node-externals": "^1.6.0",
+    "@types/xlsx": "^0.0.36",
     "awesome-typescript-loader": "^3.3.0",
+    "concurrently": "^3.5.1",
+    "ts-node": "^4.1.0",
+    "typescript": "2.6.2",
     "webpack": "^3.8.1",
-    "webpack-node-externals": "^1.6.0",
-    "ts-node": "^4.1.0"
+    "webpack-node-externals": "^1.6.0"
   }
 }

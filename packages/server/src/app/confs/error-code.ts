@@ -8,14 +8,16 @@ export interface IECODE {
  */
 export const ECODE = {
   /** System Level */
-  db_connect_err: { code: -100000, msg: 'Database query error.' },
-  jwt_valid_failed: { code: -100001, msg: 'Token validated failed.' },
-  query_failed: { code: -100002, msg: 'Query failed.' },
+  db_connect_err: { code: -0x100001, msg: 'Database query error.' },
+  jwt_valid_failed: { code: -0x100002, msg: 'Token validated failed.' },
+  query_failed: { code: -0x100003, msg: 'Query failed.' },
+  empty_file: { code: -0x100004, msg: 'No file found.' },
+  system_error: { code: -0x100005, msg: 'System error.' },
 
   /** Business Level */
-  request_body_empty: { code: -110000, msg: 'Request body cannot be empty.' },
-  params_empty: { code: -110001, msg: '[PARAMS] cannot be empty.' },
+  request_body_empty: { code: -0x110000, msg: 'Request body cannot be empty.' },
+  params_empty: { code: -0x110001, msg: '[PARAMS] cannot be empty.' },
 
-  save_user_failed: { code: -200000, msg: '保存用户失败' },
-  username_pwd_err: { code: -200001, msg: '用户名密码错误' }
+  save_user_failed: { code: -0x200000, msg: '保存用户失败' },
+  username_pwd_err: { code: -0x200001, msg: '用户名密码错误' }
 };
