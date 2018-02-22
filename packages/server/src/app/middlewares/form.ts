@@ -4,7 +4,11 @@ import { sendres } from '../utils/response';
 import { ECODE } from '../confs/error-code';
 
 export default function form() {
-  return async function(ctx: Context, next: Function) {
+  return async function from(ctx: Context, next: Function) {
+    if (ctx.path.indexOf('/api/upload') === -1) {
+      return await next();
+    }
+
     const form = new IncomingForm();
 
     const res = await new Promise((resolve, reject) => {

@@ -58,7 +58,7 @@ export default function jwt() {
 
     ctx.token = token;
 
-    await next();
+    return await next();
   };
 }
 
