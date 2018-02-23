@@ -19,5 +19,7 @@ export const ECODE = {
   params_empty: { code: -0x110001, msg: '[PARAMS] cannot be empty.' },
 
   save_user_failed: { code: -0x200000, msg: '保存用户失败' },
-  username_pwd_err: { code: -0x200001, msg: '用户名密码错误' }
+  username_pwd_err: { code: -0x200001, msg: '用户名密码错误' },
+  save_file_token_failed: { code: -0x200002, msg: '保存文件令牌失败' },
+  save_sheets_failed: { code: -0x200003, msg: '保存表格数据失败' }
 };

@@ -4,7 +4,15 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { v4 } from 'uuid';
 
-// TODO: save data and files info in db
+export interface IFileRes {
+  name: string;
+  token: string;
+  size: number;
+  lastModifiedDate: Date | undefined;
+  filepath: string;
+  data: any[];
+}
+
 // upload dir
 const uploadDir = path.join(__dirname, '../upload');
 
@@ -18,17 +26,25 @@ process.on('message', async (file: File) => {
   return process.send(result);
 });
 
-const handler = async (file: File): Promise<any> => {
+const handler = async (file: File): Promise<IFileRes> => {
   const wb = XLSX.readFile(file.path);
+  const { name, size, lastModifiedDate } = file;
 
   /* generate array of arrays */
-  const data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1 });
+  const data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 'A' });
 
   const filepath = await saveFile(file).catch(e => console.error(e));
 
-  return Promise.resolve({ filepath, data });
+  if (!filepath) return Promise.reject('save file failed!');
+  const token = path.basename(filepath);
+
+  return Promise.resolve({ name, size, token, lastModifiedDate, filepath, data });
 };
 
+/**
+ * save the given file
+ * @param file target file to save
+ */
 function saveFile(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     if (!file) return reject('file paramater should not be null.');

@@ -1,6 +1,13 @@
 import { IRouterContext } from 'koa-router';
 import { sendres } from '../utils/response';
 import { dispatch } from '../utils/dispatch';
+import { FileModel } from '../models/file';
+import * as debug from 'debug';
+import { ECODE } from '../confs/error-code';
+import { IFileRes } from '../workers/extract-excel.worker';
+import { SheetModel } from '../models/sheet';
+
+const print = debug('BLEACH:UploadCtrl');
 
 /**
  * upload
@@ -13,10 +20,28 @@ export async function upload(ctx: IRouterContext) {
   const keys = Object.keys(request._files);
   const k = keys[0];
 
-  // console.log(keys);
-  // console.log(request._files);
-  const { filepath, data } = await dispatch<{ filepath: string; data: any[] }>('extract', request._files[k]);
+  const { name, size, token, lastModifiedDate, filepath, data } = await dispatch<IFileRes>('extract', request._files[k]);
   console.log(filepath, data);
+
+  const file = new FileModel({
+    name,
+    size,
+    token,
+    filepath,
+    lastModifiedDate
+  });
+
+  // save file token
+  const fileRes = await file.save().catch(e => print(e));
+  if (!fileRes) return (ctx.body = sendres(ECODE.save_file_token_failed));
+
+  // save data
+  if (data && data.length) {
+    const sheets = await SheetModel(token)
+      .insertMany(data)
+      .catch(e => print(e));
+    if (!sheets) return (ctx.body = sendres(ECODE.save_sheets_failed));
+  }
 
   return (ctx.body = sendres(0, data));
 }
